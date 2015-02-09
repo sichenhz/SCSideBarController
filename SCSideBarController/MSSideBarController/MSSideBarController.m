@@ -105,7 +105,7 @@ static NSString *sideBarCellID = @"sideBarCell";
         leftBarButtonItem.action = @selector(animateWithPop);
     } else { // 使用默认的汉堡按钮
         UIButton *button = [[UIButton alloc] init];
-        [button setBackgroundImage:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sideBarResource.bundle/top_navigation_menuicon"]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sideBarResource.bundle/night_top_navigation_menuicon_highlighted"]] forState:UIControlStateNormal];
         
         CGRect frame = button.frame;
         frame.size = button.currentBackgroundImage.size;
