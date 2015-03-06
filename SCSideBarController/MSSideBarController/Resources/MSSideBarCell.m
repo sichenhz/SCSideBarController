@@ -9,6 +9,7 @@
 #import "MSSideBarCell.h"
 
 #define iconW 45
+#define marginMiddle 25
 
 @implementation MSSideBarCell
 
@@ -31,7 +32,7 @@
     if (!_iconView) {
         CGFloat cellW = self.frame.size.width;
         CGFloat cellH = self.frame.size.height;
-        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(cellW/2 - iconW - 20, 0, iconW, cellH)];
+        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(cellW/2 - iconW - marginMiddle, 0, iconW, cellH)];
         iconView.contentMode = UIViewContentModeCenter;
         [self addSubview:iconView];
         _iconView = iconView;

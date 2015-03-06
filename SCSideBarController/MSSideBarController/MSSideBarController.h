@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FXBlurView.h"
+#import "UIView+Extension.h"
 
-@class FXBlurView;
-
-@interface MSSideBarController : UIViewController
-
+@interface MSSideBarController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 /**
  *  当前选中的控制器下标
  */
@@ -19,10 +18,17 @@
 /**
  *  当前选中的控制器
  */
-@property(nonatomic,weak) UIViewController *selectedViewController;
+@property(nonatomic, weak) UIViewController *selectedViewController;
 /**
- *  所有的子控制器
+ *  侧边菜单视图
  */
-@property(nonatomic,copy) NSArray *viewControllers;
-
+@property (nonatomic, weak) UIView *sideBar;
+/**
+ *  侧边菜单视图内的tableView
+ */
+@property (nonatomic, weak) UITableView *tableView;
+/**
+ *  毛玻璃视图
+ */
+@property (nonatomic, weak) FXBlurView *blurView;
 @end

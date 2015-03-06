@@ -7,7 +7,6 @@
 //
 
 #import "MSSideBarController.h"
-#import "FXBlurView.h"
 #import "MSSideBarCell.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -23,18 +22,9 @@
 #define kH kScreenHeight - kY
 
 #define kRowHeight 65.0
-#define kFontSizeHigh 20.0
-#define kFontSizeNormal 18.0
 
-@interface MSSideBarController ()<UITableViewDataSource, UITableViewDelegate>
-/**
- *  侧边菜单视图
- */
-@property (nonatomic, weak) UIView *sideBar;
-/**
- *  毛玻璃视图
- */
-@property (nonatomic, weak) FXBlurView *blurView;
+@interface MSSideBarController ()
+@property (nonatomic, strong) UITapGestureRecognizer *tapInBlurView;
 @end
 
 @implementation MSSideBarController
@@ -43,38 +33,25 @@ static NSString *sideBarCellID = @"sideBarCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor clearColor];
-    
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    // 每次切换控制器后 重新添加手势
-    [self addGesture];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    // 如果没有添加子控制器, 则自动创建一个
-    if (!self.childViewControllers.count) {
-        UIViewController *vc = [[UIViewController alloc] init];
-        vc.view.backgroundColor = [UIColor grayColor];
-        [self addChildViewController:[[UINavigationController alloc] initWithRootViewController:vc]];
+- (void)addChildViewController:(UIViewController *)childController {
+    [super addChildViewController:childController];
+    if (!self.selectedViewController) {
+        [self chooseController:0]; // 默认选中第一个子控制器
     }
-    // 切换至第一个子控制器
-    [self chooseController:self.selectedIndex];
 }
 
+
+#pragma mark - 触发事件
 - (void)chooseController:(NSUInteger)selectedIndex
 {
-    self.viewControllers = self.childViewControllers;
     self.selectedIndex = selectedIndex;
     // 移除旧控制器的view
     [self.selectedViewController.view removeFromSuperview];
     // 添加新控制器的view
-    UIViewController *vc = self.viewControllers[selectedIndex];
+    UIViewController *vc = self.childViewControllers[selectedIndex];
     [self.view addSubview:vc.view];
     // 切换控制器时, 需要将菜单移至视图顶部
     if (_sideBar) {
@@ -93,7 +70,6 @@ static NSString *sideBarCellID = @"sideBarCell";
             }
         }
     }
-    
     self.selectedViewController = vc;
 }
 
@@ -105,7 +81,7 @@ static NSString *sideBarCellID = @"sideBarCell";
         leftBarButtonItem.action = @selector(animateWithPop);
     } else { // 使用默认的汉堡按钮
         UIButton *button = [[UIButton alloc] init];
-        [button setBackgroundImage:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sideBarResource.bundle/night_top_navigation_menuicon_highlighted"]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"sideBarResource.bundle/top_navigation_menuicon"]] forState:UIControlStateNormal];        
         
         CGRect frame = button.frame;
         frame.size = button.currentBackgroundImage.size;
@@ -118,28 +94,28 @@ static NSString *sideBarCellID = @"sideBarCell";
 }
 
 
-#pragma mark - 触发事件
-- (void)addGesture {
-    // 给子控制器视图添加手势
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMenu:)];
-    [self.selectedViewController.view addGestureRecognizer:pan];
-}
-
 - (void)panMenu:(UIPanGestureRecognizer *)pan {
+    if (!_tableView) { // 手动调用tableView
+        [self tableView];
+    }
     
     CGPoint p = [pan translationInView:self.sideBar];
     CGPoint v = [pan velocityInView:self.sideBar];
     
+    CGFloat y = self.sideBar.y;
+    CGFloat w = self.sideBar.width;
+    CGFloat h = self.sideBar.height;
+    
     if (self.sideBar.frame.origin.x + p.x > 0) {
-        self.sideBar.frame = CGRectMake(0, kY, kW, kH);
+        self.sideBar.frame = CGRectMake(0, y, w, h);
     } else if (CGRectGetMaxX(self.sideBar.frame) + p.x < 0) {
-        self.sideBar.frame = CGRectMake(kX, kY, kW, kH);
+        self.sideBar.frame = CGRectMake(-w, y, w, h);
     } else {
-        self.sideBar.frame = CGRectMake(self.sideBar.frame.origin.x + p.x, kY, kW, kH);
+        self.sideBar.frame = CGRectMake(self.sideBar.frame.origin.x + p.x, y, w, h);
     }
     [pan setTranslation:CGPointMake(0, 0) inView:self.view];
     
-    CGFloat percent = CGRectGetMaxX(self.sideBar.frame)/(kScreenWidth*2/3);
+    CGFloat percent = CGRectGetMaxX(self.sideBar.frame) / w;
     self.blurView.alpha = percent;
     
     if (pan.state == UIGestureRecognizerStateEnded) {
@@ -148,24 +124,21 @@ static NSString *sideBarCellID = @"sideBarCell";
         } else if (v.x < -kVelocity) { // 向左快速滑动
             [self animateWithDismiss];
         } else { // 正常拖拽结束
-            if (self.sideBar.frame.origin.x >= -kW/2) {
+            if (self.sideBar.frame.origin.x >= (-w) / 2) {
                 [self animateWithPop];
             } else {
                 [self animateWithDismiss];
             }
         }
     }
-    // 拖拽结束
-    if (pan.state == UIGestureRecognizerStateBegan) {
-    }
 }
 
 - (void)animateWithPop {
-    if (!_sideBar) { // 防止sideBar没有创建导致内部控件出现异常动画
-        [self sideBar];
+    if (!_tableView) { // 防止sideBar没有创建导致内部控件出现异常动画
+        [self tableView];
     }
     [UIView animateWithDuration:kTimeInterval animations:^{
-        self.sideBar.frame = CGRectMake(0, kY, kW, kH);
+        self.sideBar.frame = CGRectMake(0, self.sideBar.y, self.sideBar.width, self.sideBar.height);
         self.blurView.alpha = 1.0;
     } completion:^(BOOL finished) {
     }];
@@ -173,18 +146,16 @@ static NSString *sideBarCellID = @"sideBarCell";
 
 - (void)animateWithDismiss {
     [UIView animateWithDuration:kTimeInterval animations:^{
-        self.sideBar.frame = CGRectMake(kX, kY, kW, kH);
+        self.sideBar.frame = CGRectMake(-self.sideBar.width, self.sideBar.y, self.sideBar.width, self.sideBar.height);
         self.blurView.alpha = 0.0;
     } completion:^(BOOL finished) {
-        [self.sideBar removeFromSuperview];
+        [self.blurView removeFromSuperview];
     }];
 }
 
 - (void)switchViewController:(int)index {
     [self chooseController:index];
-    // 给showingVc重新添加手势
-    [self addGesture];
-    // 隐藏毛玻璃
+    // 移除毛玻璃
     [self.blurView removeFromSuperview];
     [self animateWithDismiss];
 }
@@ -194,7 +165,16 @@ static NSString *sideBarCellID = @"sideBarCell";
     [self animateWithDismiss];
 }
 
+
+
 #pragma mark - 惰性实例化
+- (void)setSelectedViewController:(UIViewController *)selectedViewController {
+    if (_selectedViewController != selectedViewController) {
+        [selectedViewController.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMenu:)]];
+        _selectedViewController = selectedViewController;
+    }
+}
+
 - (UIView *)sideBar {
     if (!_sideBar) {
         UIView *sideBar = [[UIView alloc] initWithFrame:CGRectMake(kX, kY, kW, kH)];
@@ -202,27 +182,28 @@ static NSString *sideBarCellID = @"sideBarCell";
         sideBar.alpha = kAlpha;
         [self.view addSubview:sideBar];
         
-        // 设置tableView
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kW, kH-64)];
+        // 给菜单视图添加手势
+        UIPanGestureRecognizer *panInSideBar = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMenu:)];
+        [sideBar addGestureRecognizer:panInSideBar];
+        
+        _sideBar = sideBar;
+    }
+    return _sideBar;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.sideBar.width, self.sideBar.height - 64)];
         [tableView registerClass:[MSSideBarCell class] forCellReuseIdentifier:sideBarCellID];
         tableView.backgroundColor = [UIColor clearColor];
         tableView.bounces = NO;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.delegate = self;
         tableView.dataSource = self;
-        [sideBar addSubview:tableView];
-        
-        // 给菜单视图添加手势
-        UIPanGestureRecognizer *panInMenu = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMenu:)];
-        [sideBar addGestureRecognizer:panInMenu];
-        
-        // 给毛玻璃视图添加手势
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBlurView:)];
-        [self.blurView addGestureRecognizer:tap];
-        
-        _sideBar = sideBar;
+        [self.sideBar addSubview:tableView];
+        _tableView = tableView;
     }
-    return _sideBar;
+    return _tableView;
 }
 
 - (FXBlurView *)blurView {
@@ -232,24 +213,20 @@ static NSString *sideBarCellID = @"sideBarCell";
         blurView.dynamic = NO;
         blurView.blurRadius = 20.0;
         blurView.tintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+        // 给毛玻璃视图添加手势
+        [blurView addGestureRecognizer:self.tapInBlurView];
+        
         [self.selectedViewController.view addSubview:blurView];
         _blurView = blurView;
     }
     return _blurView;
 }
 
-- (NSUInteger)selectedIndex {
-    if (!_selectedIndex) {
-        _selectedIndex = 0;
+- (UITapGestureRecognizer *)tapInBlurView {
+    if (!_tapInBlurView) {
+        _tapInBlurView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBlurView:)];
     }
-    return _selectedIndex;
-}
-
-- (NSArray *)viewControllers {
-    if (!_viewControllers) {
-        _viewControllers = [NSArray array];
-    }
-    return _viewControllers;
+    return _tapInBlurView;
 }
 
 #pragma mark - tableView代理方法
@@ -264,18 +241,7 @@ static NSString *sideBarCellID = @"sideBarCell";
         cell = [[MSSideBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sideBarCellID];
     }
     
-    UIViewController *vc = self.viewControllers[indexPath.row];
-#warning 这里要修改
-//    if ([vc isKindOfClass:[UINavigationController class]]) {
-//        UIViewController *rootVc = vc.childViewControllers[0];
-//        cell.titleLabel.text = rootVc.tabBarItem.title;
-//        cell.iconView.image = rootVc.tabBarItem.image;
-//        cell.iconView.image = rootVc.tabBarItem.selectedImage;
-//    } else {
-//        cell.titleLabel.text = vc.tabBarItem.title;
-//        cell.iconView.image = vc.tabBarItem.image;
-//        cell.iconView.image = vc.tabBarItem.selectedImage;
-//    }
+    UIViewController *vc = self.childViewControllers[indexPath.row];
     cell.titleLabel.text = [self tabBarItemTitle:vc];
     cell.iconView.image = [self tabBarItemImage:vc];
     cell.iconView.highlightedImage = [self tabBarItemSelectedImage:vc];
@@ -283,7 +249,6 @@ static NSString *sideBarCellID = @"sideBarCell";
     if (indexPath.row == self.selectedIndex) {
         cell.titleLabel.highlighted = YES;
         cell.iconView.highlighted = YES;
-//        cell.titleLabel.font = [UIFont systemFontOfSize:kFontSizeHigh];
     }
     
     return cell;
@@ -330,28 +295,13 @@ static NSString *sideBarCellID = @"sideBarCell";
     return kRowHeight;
 }
 
-//- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-//    MSSideBarCell *cell = (MSSideBarCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    cell.titleLabel.font = [UIFont systemFontOfSize:kFontSizeHigh];
-//}
-
-//- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.row != self.selectedIndex) {
-//        MSSideBarCell *cell = (MSSideBarCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        cell.titleLabel.font = [UIFont systemFontOfSize:kFontSizeNormal];
-//    }
-//}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row != self.selectedIndex) {
         MSSideBarCell *preCell = (MSSideBarCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
         preCell.titleLabel.highlighted = NO;
         preCell.iconView.highlighted = NO;
-//        preCell.titleLabel.font = [UIFont systemFontOfSize:kFontSizeNormal];
     }
     
-//    MSSideBarCell *cell = (MSSideBarCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    cell.titleLabel.font = [UIFont systemFontOfSize:kFontSizeHigh];
     [self switchViewController:(int)indexPath.row];
 }
 

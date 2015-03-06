@@ -57,7 +57,6 @@
     [self addChildViewController:tabController];
     
     [self addChildViewController:vc4];
-    
 }
 
 
