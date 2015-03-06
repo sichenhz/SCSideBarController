@@ -87,11 +87,11 @@
 		256F3B5F1AA94D40000014CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				256F3B661AA94D40000014CB /* UIView-Extension */,
 				256F3B601AA94D40000014CB /* FXBlurView */,
 				256F3B631AA94D40000014CB /* MSSideBarCell.h */,
 				256F3B641AA94D40000014CB /* MSSideBarCell.m */,
 				256F3B651AA94D40000014CB /* sideBarResource.bundle */,
-				256F3B661AA94D40000014CB /* UIView-Extension */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
