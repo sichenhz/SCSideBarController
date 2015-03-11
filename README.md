@@ -5,8 +5,8 @@
 *创建一个新的控制器并继承于MSSideBarController  
 *创建其他子控制器并添加为MSSideBarController的子控制器
 
-    UIViewController *vc1 = [[UIViewController alloc] init];
-    [self addChildViewController:vc4];
+    UIViewController *vc = [[UIViewController alloc] init];
+    [self addChildViewController:vc];
 
 *如果需要设置标题和文字,则需要设置子控制器的tabBarItem属性
 
