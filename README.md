@@ -2,7 +2,8 @@
 仿网易新闻的sideBarController
 
 ##基本用法
-*创建一个新的控制器并继承于MSSideBarController  
+*创建一个新的控制器并继承于MSSideBarController(和UITabBarController用法一样)
+
 *创建其他子控制器并添加为MSSideBarController的子控制器
 
     UIViewController *vc = [[UIViewController alloc] init];
@@ -12,10 +13,14 @@
 
     vc1.tabBarItem.title = @"发现";
     vc1.tabBarItem.image = [UIImage imageNamed:@"xxx"];
+    
+*如果需要设置文字的属性,可调用tabBarItem的setTitleTextAttributes方法
+    [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]} forState:UIControlStateSelected];
 
 *如果有包装导航栏控制器或者tabBar控制器,默认优先取父控制器的值, 如果父控制器没有赋值, 则判断子控制器数组中的第一个控制器是否有赋值, 依次循环 (图片也一样)
   
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc1];
     navController.tabBarItem.title = @"设置2";
 
-![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB26qWtcXXXXXa_XpXXXXXXXXXX_!!135480037.png)
+
+![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB2dCWtcXXXXXcLXXXXXXXXXXXX_!!135480037.jpeg)
