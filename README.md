@@ -1,4 +1,4 @@
-# SCSideBarController
+# MSSideBarController
 仿网易新闻的sideBarController
 
 ##基本用法
