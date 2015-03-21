@@ -242,9 +242,23 @@ static NSString *sideBarCellID = @"sideBarCell";
     }
     
     UIViewController *vc = self.childViewControllers[indexPath.row];
-    cell.titleLabel.text = [self tabBarItemTitle:vc];
+    cell.titleLabel.text = [self tabBarItemText:vc];
     cell.iconView.image = [self tabBarItemImage:vc];
     cell.iconView.highlightedImage = [self tabBarItemSelectedImage:vc];
+    
+    UIColor *textColor = [self tabBarItemTextAttributesNormal:vc][NSForegroundColorAttributeName];
+    UIColor *textColorSelected = [self tabBarItemTextAttributesSelected:vc][NSForegroundColorAttributeName];
+    UIFont *textFont = [self tabBarItemTextAttributesNormal:vc][NSFontAttributeName];
+    if (textColor) {
+        cell.titleLabel.textColor = textColor;
+    }
+    if (textColorSelected) {
+        cell.titleLabel.highlightedTextColor = textColorSelected;
+    }
+    if (textFont) {
+        cell.titleLabel.font = textFont;
+    }
+    
     
     if (indexPath.row == self.selectedIndex) {
         cell.titleLabel.highlighted = YES;
@@ -254,12 +268,12 @@ static NSString *sideBarCellID = @"sideBarCell";
     return cell;
 }
 
-- (NSString *)tabBarItemTitle:(UIViewController *)vc {
+- (NSString *)tabBarItemText:(UIViewController *)vc {
     if (vc.tabBarItem.title) {
         return vc.tabBarItem.title;
     } else {
         if (vc.childViewControllers.count) {
-            return [self tabBarItemTitle:vc.childViewControllers[0]];
+            return [self tabBarItemText:vc.childViewControllers[0]];
         } else {
             return nil;
         }
@@ -290,6 +304,33 @@ static NSString *sideBarCellID = @"sideBarCell";
     }
 }
 
+- (NSDictionary *)tabBarItemTextAttributesSelected:(UIViewController *)vc {
+    NSDictionary *textAttributesSelected = [vc.tabBarItem titleTextAttributesForState:UIControlStateSelected];
+
+    if (textAttributesSelected) {
+        return textAttributesSelected;
+    } else {
+        if (vc.childViewControllers.count) {
+            return [self tabBarItemTextAttributesSelected:vc.childViewControllers[0]];
+        } else {
+            return nil;
+        }
+    }
+}
+
+- (NSDictionary *)tabBarItemTextAttributesNormal:(UIViewController *)vc {
+    NSDictionary *textAttributesNormal = [vc.tabBarItem titleTextAttributesForState:UIControlStateNormal];
+    
+    if (textAttributesNormal) {
+        return textAttributesNormal;
+    } else {
+        if (vc.childViewControllers.count) {
+            return [self tabBarItemTextAttributesNormal:vc.childViewControllers[0]];
+        } else {
+            return nil;
+        }
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return kRowHeight;

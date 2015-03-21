@@ -19,44 +19,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIViewController *vc1 = [[UIViewController alloc] init];
-    UIViewController *vc2 = [[UIViewController alloc] init];
-    UIViewController *vc3 = [[UIViewController alloc] init];
-    UIViewController *vc4 = [[UIViewController alloc] init];
-    
-    vc1.view.backgroundColor = kRandomColor;
-    vc2.view.backgroundColor = kRandomColor;
-    vc3.view.backgroundColor = kRandomColor;
-    vc4.view.backgroundColor = kRandomColor;
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"消息" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
+}
 
-    vc1.tabBarItem.title = @"发现";
-    vc2.tabBarItem.title = @"设置";
-    vc3.tabBarItem.title = @"其他";
-    vc4.tabBarItem.title = @"首页";
+- (void)addOneChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
+    [vc.tabBarItem setTitleTextAttributes:@{
+                                            NSForegroundColorAttributeName : [UIColor orangeColor]
+                                            } forState:UIControlStateSelected];
+    vc.title = title;
+    vc.tabBarItem.image = [UIImage imageNamed:image];
+    vc.tabBarItem.selectedImage = [UIImage imageNamed:selectedImage];
+    vc.view.backgroundColor = kRandomColor;
     
-    vc1.tabBarItem.image = [UIImage imageNamed:@"night_icon_setting"];
-    vc2.tabBarItem.image = [UIImage imageNamed:@"night_icon_setting"];
-    vc3.tabBarItem.image = [UIImage imageNamed:@"night_icon_setting"];
-    vc4.tabBarItem.image = [UIImage imageNamed:@"night_icon_setting"];
-    
-    vc1.tabBarItem.selectedImage = [UIImage imageNamed:@"night_icon_highlighted"];
-    vc2.tabBarItem.selectedImage = [UIImage imageNamed:@"night_icon_highlighted"];
-    vc3.tabBarItem.selectedImage = [UIImage imageNamed:@"night_icon_highlighted"];
-    vc4.tabBarItem.selectedImage = [UIImage imageNamed:@"night_icon_highlighted"];
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc1];
-    [self addChildViewController:navController];
-    
-    UITabBarController *tabController = [[UITabBarController alloc] init];
-    UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:vc2];
-    [tabController addChildViewController:navController2];
-    [tabController addChildViewController:vc3];
-    [tabController addChildViewController:[[UINavigationController alloc] init]];
-    tabController.tabBarItem.title = @"设置2"; // 如果没有给父控制器设值, 则判断子控制器数组中的第一个控制器是否有值, 然后往下循环 (图片也一样)
-    [self addChildViewController:tabController];
-    
-    [self addChildViewController:vc4];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self addChildViewController:nav];
 }
 
 
