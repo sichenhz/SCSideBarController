@@ -18,4 +18,4 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc1];
     navController.tabBarItem.title = @"设置2";
 
-![icon](http://img02.taobaocdn.com/imgextra/i2/135480037/TB2SRNVbVXXXXbiXXXXXXXXXXXX_!!135480037.png)
+![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB26qWtcXXXXXa_XpXXXXXXXXXX_!!135480037.png)
