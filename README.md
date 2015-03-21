@@ -15,6 +15,7 @@
     vc1.tabBarItem.image = [UIImage imageNamed:@"xxx"];
     
 *如果需要设置文字的属性,可调用tabBarItem的setTitleTextAttributes方法
+
     [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]} forState:UIControlStateSelected];
 
 *如果有包装导航栏控制器或者tabBar控制器,默认优先取父控制器的值, 如果父控制器没有赋值, 则判断子控制器数组中的第一个控制器是否有赋值, 依次循环 (图片也一样)
