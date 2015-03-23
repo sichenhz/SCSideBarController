@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "FXBlurView.h"
-#import "UIView+Extension.h"
 
 @interface MSSideBarController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 /**
@@ -31,4 +30,8 @@
  *  毛玻璃视图
  */
 @property (nonatomic, weak) FXBlurView *blurView;
+/**
+ *  切换控制器
+ */
+- (void)switchViewController:(int)index;
 @end

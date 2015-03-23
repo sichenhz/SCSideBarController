@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25429A201ABFCF8800C03DBE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25429A1F1ABFCF8800C03DBE /* FXBlurView.m */; };
 		256F3B691AA94D40000014CB /* MSSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B5E1AA94D40000014CB /* MSSideBarController.m */; };
-		256F3B6A1AA94D40000014CB /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B621AA94D40000014CB /* FXBlurView.m */; };
 		256F3B6B1AA94D40000014CB /* MSSideBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B641AA94D40000014CB /* MSSideBarCell.m */; };
 		256F3B6C1AA94D40000014CB /* sideBarResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 256F3B651AA94D40000014CB /* sideBarResource.bundle */; };
-		256F3B6D1AA94D40000014CB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B681AA94D40000014CB /* UIView+Extension.m */; };
 		25F944BB1A88AD1600810DCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944BA1A88AD1600810DCF /* main.m */; };
 		25F944BE1A88AD1600810DCF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944BD1A88AD1600810DCF /* AppDelegate.m */; };
 		25F944C11A88AD1600810DCF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944C01A88AD1600810DCF /* ViewController.m */; };
@@ -32,15 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25429A1E1ABFCF8800C03DBE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		25429A1F1ABFCF8800C03DBE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		256F3B5D1AA94D40000014CB /* MSSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSideBarController.h; sourceTree = "<group>"; };
 		256F3B5E1AA94D40000014CB /* MSSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSideBarController.m; sourceTree = "<group>"; };
-		256F3B611AA94D40000014CB /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
-		256F3B621AA94D40000014CB /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		256F3B631AA94D40000014CB /* MSSideBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSideBarCell.h; sourceTree = "<group>"; };
 		256F3B641AA94D40000014CB /* MSSideBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSideBarCell.m; sourceTree = "<group>"; };
 		256F3B651AA94D40000014CB /* sideBarResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sideBarResource.bundle; sourceTree = "<group>"; };
-		256F3B671AA94D40000014CB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		256F3B681AA94D40000014CB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		25F944B51A88AD1600810DCF /* SCSideBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCSideBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F944B91A88AD1600810DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25F944BA1A88AD1600810DCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,31 +84,13 @@
 		256F3B5F1AA94D40000014CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				256F3B661AA94D40000014CB /* UIView-Extension */,
-				256F3B601AA94D40000014CB /* FXBlurView */,
+				25429A1E1ABFCF8800C03DBE /* FXBlurView.h */,
+				25429A1F1ABFCF8800C03DBE /* FXBlurView.m */,
 				256F3B631AA94D40000014CB /* MSSideBarCell.h */,
 				256F3B641AA94D40000014CB /* MSSideBarCell.m */,
 				256F3B651AA94D40000014CB /* sideBarResource.bundle */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		256F3B601AA94D40000014CB /* FXBlurView */ = {
-			isa = PBXGroup;
-			children = (
-				256F3B611AA94D40000014CB /* FXBlurView.h */,
-				256F3B621AA94D40000014CB /* FXBlurView.m */,
-			);
-			path = FXBlurView;
-			sourceTree = "<group>";
-		};
-		256F3B661AA94D40000014CB /* UIView-Extension */ = {
-			isa = PBXGroup;
-			children = (
-				256F3B671AA94D40000014CB /* UIView+Extension.h */,
-				256F3B681AA94D40000014CB /* UIView+Extension.m */,
-			);
-			path = "UIView-Extension";
 			sourceTree = "<group>";
 		};
 		25F944AC1A88AD1600810DCF = {
@@ -278,10 +257,9 @@
 				256F3B6B1AA94D40000014CB /* MSSideBarCell.m in Sources */,
 				25F944C11A88AD1600810DCF /* ViewController.m in Sources */,
 				25F944BE1A88AD1600810DCF /* AppDelegate.m in Sources */,
-				256F3B6D1AA94D40000014CB /* UIView+Extension.m in Sources */,
-				256F3B6A1AA94D40000014CB /* FXBlurView.m in Sources */,
 				256F3B691AA94D40000014CB /* MSSideBarController.m in Sources */,
 				25F944BB1A88AD1600810DCF /* main.m in Sources */,
+				25429A201ABFCF8800C03DBE /* FXBlurView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

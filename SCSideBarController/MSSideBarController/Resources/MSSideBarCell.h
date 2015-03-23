@@ -9,6 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @interface MSSideBarCell : UITableViewCell
+/**
+ *  侧拉菜单的icon
+ */
 @property (nonatomic, weak) UIImageView *iconView;
+/**
+ *  侧拉菜单的title
+ */
 @property (nonatomic, weak) UILabel *titleLabel;
+/**
+ *  icon和title位置的偏移量
+ */
+@property (nonatomic, assign) CGFloat offsetX;
+/**
+ *  icon的宽
+ */
+@property (nonatomic, assign) CGFloat iconW;
 @end

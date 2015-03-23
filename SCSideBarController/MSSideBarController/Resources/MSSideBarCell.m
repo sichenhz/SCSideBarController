@@ -8,8 +8,7 @@
 
 #import "MSSideBarCell.h"
 
-#define iconW 45
-#define marginMiddle 25
+#define marginMiddle 5 // 默认往左偏移5
 
 @implementation MSSideBarCell
 
@@ -25,14 +24,15 @@
     self.selectionStyle = UITableViewCellSelectionStyleDefault;
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-
 }
 
 - (UIImageView *)iconView {
     if (!_iconView) {
         CGFloat cellW = self.frame.size.width;
         CGFloat cellH = self.frame.size.height;
-        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(cellW/2 - iconW - marginMiddle, 0, iconW, cellH)];
+        CGFloat iconW = self.iconW ? self.iconW : 45; // icon的宽默认为45
+        
+        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(cellW/2 - iconW - marginMiddle - self.offsetX, 0, iconW, cellH)];
         iconView.contentMode = UIViewContentModeCenter;
         [self addSubview:iconView];
         _iconView = iconView;

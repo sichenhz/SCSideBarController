@@ -21,7 +21,7 @@
 #define kW kScreenWidth * kRatio
 #define kH kScreenHeight - kY
 
-#define kRowHeight 65.0
+#define kRowHeight 80.0
 
 @interface MSSideBarController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapInBlurView;
@@ -102,9 +102,9 @@ static NSString *sideBarCellID = @"sideBarCell";
     CGPoint p = [pan translationInView:self.sideBar];
     CGPoint v = [pan velocityInView:self.sideBar];
     
-    CGFloat y = self.sideBar.y;
-    CGFloat w = self.sideBar.width;
-    CGFloat h = self.sideBar.height;
+    CGFloat y = self.sideBar.frame.origin.y;
+    CGFloat w = self.sideBar.frame.size.width;
+    CGFloat h = self.sideBar.frame.size.height;
     
     if (self.sideBar.frame.origin.x + p.x > 0) {
         self.sideBar.frame = CGRectMake(0, y, w, h);
@@ -138,7 +138,7 @@ static NSString *sideBarCellID = @"sideBarCell";
         [self tableView];
     }
     [UIView animateWithDuration:kTimeInterval animations:^{
-        self.sideBar.frame = CGRectMake(0, self.sideBar.y, self.sideBar.width, self.sideBar.height);
+        self.sideBar.frame = CGRectMake(0, self.sideBar.frame.origin.y, self.sideBar.frame.size.width, self.sideBar.frame.size.height);
         self.blurView.alpha = 1.0;
     } completion:^(BOOL finished) {
     }];
@@ -146,7 +146,7 @@ static NSString *sideBarCellID = @"sideBarCell";
 
 - (void)animateWithDismiss {
     [UIView animateWithDuration:kTimeInterval animations:^{
-        self.sideBar.frame = CGRectMake(-self.sideBar.width, self.sideBar.y, self.sideBar.width, self.sideBar.height);
+        self.sideBar.frame = CGRectMake(-self.sideBar.frame.size.width, self.sideBar.frame.origin.y, self.sideBar.frame.size.width, self.sideBar.frame.size.height);
         self.blurView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self.blurView removeFromSuperview];
@@ -193,7 +193,7 @@ static NSString *sideBarCellID = @"sideBarCell";
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.sideBar.width, self.sideBar.height - 64)];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.sideBar.frame.size.width, self.sideBar.frame.size.height - 64)];
         [tableView registerClass:[MSSideBarCell class] forCellReuseIdentifier:sideBarCellID];
         tableView.backgroundColor = [UIColor clearColor];
         tableView.bounces = NO;

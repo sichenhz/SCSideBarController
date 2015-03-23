@@ -22,7 +22,10 @@
     [self addOneChildVc:[[UIViewController alloc] init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     [self addOneChildVc:[[UIViewController alloc] init] title:@"消息" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
     [self addOneChildVc:[[UIViewController alloc] init] title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
-    [self addOneChildVc:[[UIViewController alloc] init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"我的" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"搜索" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    [self addOneChildVc:[[UIViewController alloc] init] title:@"设置" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    
 }
 
 - (void)addOneChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
@@ -38,5 +41,28 @@
     [self addChildViewController:nav];
 }
 
+////     也可通过代理方法自定义菜单栏
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 6;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//    }
+//    cell.imageView.image = [UIImage imageNamed:@"tabbar_home"];
+//    cell.textLabel.text = @"首页";
+//    
+//    return cell;
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [self switchViewController:(int)indexPath.row];
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 60;
+//}
 
 @end
