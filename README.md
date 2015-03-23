@@ -1,27 +1,30 @@
-# MSSideBarController
-仿网易新闻的sideBarController
+### 如何使用-SCSideBarController
+1.创建类, 导入基类并继承于SCSideBarController
 
-##基本用法
-*创建一个新的控制器并继承于MSSideBarController(和UITabBarController用法一样)
+    #import "SCSideBarController.h"
+    @interface ViewController : SCSideBarController
+    @end
 
-*创建其他子控制器并添加为MSSideBarController的子控制器
+2.实例化一些控制器, 并添加为当前类的子控制器
 
     UIViewController *vc = [[UIViewController alloc] init];
     [self addChildViewController:vc];
-
-*如果需要设置标题和文字,则需要设置子控制器的tabBarItem属性
-
-    vc1.tabBarItem.title = @"发现";
-    vc1.tabBarItem.image = [UIImage imageNamed:@"xxx"];
     
-*如果需要设置文字的属性,可调用tabBarItem的setTitleTextAttributes方法
+3.如果需要设置标题和icon,则需要设置子控制器的tabBarItem属性
+
+    vc.tabBarItem.title = @"首页";
+    vc.tabBarItem.image = [UIImage imageNamed:@"xxx"];
+
+4.如果需要设置文字的属性,可调用tabBarItem的setTitleTextAttributes方法
+(目前支持设置字体大小和selected状态下和normal状态下的字体颜色)
 
     [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]} forState:UIControlStateSelected];
+    
+5.也可通过tablew代理方法自定义cell来自定义菜单栏, 但在选中cell时候需要调用swichViewController:来切换控制器
 
-*如果有包装导航栏控制器或者tabBar控制器,默认优先取父控制器的值, 如果父控制器没有赋值, 则判断子控制器数组中的第一个控制器是否有赋值, 依次循环 (图片也一样)
-  
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc1];
-    navController.tabBarItem.title = @"设置2";
+    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self switchViewController:(int)indexPath.row];
+    }
 
 
 ![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB2dCWtcXXXXXcLXXXXXXXXXXXX_!!135480037.jpeg)
