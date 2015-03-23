@@ -1,4 +1,7 @@
 ### 如何使用-SCSideBarController
+
+![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB2dCWtcXXXXXcLXXXXXXXXXXXX_!!135480037.jpeg)
+
 1.创建类, 导入基类并继承于SCSideBarController
 
     #import "SCSideBarController.h"
@@ -26,5 +29,3 @@
     [self switchViewController:(int)indexPath.row];
     }
 
-
-![icon](http://img01.taobaocdn.com/imgextra/i1/135480037/TB2dCWtcXXXXXcLXXXXXXXXXXXX_!!135480037.jpeg)
