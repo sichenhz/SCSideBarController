@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 meilishuo. All rights reserved.
 //
 
-#import "MSSideBarCell.h"
+#import "SCSideBarCell.h"
 
 #define marginMiddle 5 // 默认往左偏移5
 
-@implementation MSSideBarCell
+@implementation SCSideBarCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

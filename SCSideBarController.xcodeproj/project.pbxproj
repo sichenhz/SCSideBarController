@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25429A201ABFCF8800C03DBE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25429A1F1ABFCF8800C03DBE /* FXBlurView.m */; };
-		256F3B691AA94D40000014CB /* MSSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B5E1AA94D40000014CB /* MSSideBarController.m */; };
-		256F3B6B1AA94D40000014CB /* MSSideBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 256F3B641AA94D40000014CB /* MSSideBarCell.m */; };
-		256F3B6C1AA94D40000014CB /* sideBarResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 256F3B651AA94D40000014CB /* sideBarResource.bundle */; };
+		25429A2A1AC0240300C03DBE /* SCSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25429A231AC0240300C03DBE /* SCSideBarController.m */; };
+		25429A2B1AC0240300C03DBE /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25429A261AC0240300C03DBE /* FXBlurView.m */; };
+		25429A2C1AC0240300C03DBE /* SCSideBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25429A281AC0240300C03DBE /* SCSideBarCell.m */; };
+		25429A2D1AC0240300C03DBE /* sideBarResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25429A291AC0240300C03DBE /* sideBarResource.bundle */; };
 		25F944BB1A88AD1600810DCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944BA1A88AD1600810DCF /* main.m */; };
 		25F944BE1A88AD1600810DCF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944BD1A88AD1600810DCF /* AppDelegate.m */; };
 		25F944C11A88AD1600810DCF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F944C01A88AD1600810DCF /* ViewController.m */; };
@@ -31,13 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		25429A1E1ABFCF8800C03DBE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
-		25429A1F1ABFCF8800C03DBE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		256F3B5D1AA94D40000014CB /* MSSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSideBarController.h; sourceTree = "<group>"; };
-		256F3B5E1AA94D40000014CB /* MSSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSideBarController.m; sourceTree = "<group>"; };
-		256F3B631AA94D40000014CB /* MSSideBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSideBarCell.h; sourceTree = "<group>"; };
-		256F3B641AA94D40000014CB /* MSSideBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSideBarCell.m; sourceTree = "<group>"; };
-		256F3B651AA94D40000014CB /* sideBarResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sideBarResource.bundle; sourceTree = "<group>"; };
+		25429A221AC0240300C03DBE /* SCSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSideBarController.h; sourceTree = "<group>"; };
+		25429A231AC0240300C03DBE /* SCSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSideBarController.m; sourceTree = "<group>"; };
+		25429A251AC0240300C03DBE /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		25429A261AC0240300C03DBE /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		25429A271AC0240300C03DBE /* SCSideBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSideBarCell.h; sourceTree = "<group>"; };
+		25429A281AC0240300C03DBE /* SCSideBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSideBarCell.m; sourceTree = "<group>"; };
+		25429A291AC0240300C03DBE /* sideBarResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = sideBarResource.bundle; sourceTree = "<group>"; };
 		25F944B51A88AD1600810DCF /* SCSideBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCSideBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25F944B91A88AD1600810DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25F944BA1A88AD1600810DCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,24 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		256F3B5C1AA94D40000014CB /* MSSideBarController */ = {
+		25429A211AC0240300C03DBE /* SCSideBarController */ = {
 			isa = PBXGroup;
 			children = (
-				256F3B5D1AA94D40000014CB /* MSSideBarController.h */,
-				256F3B5E1AA94D40000014CB /* MSSideBarController.m */,
-				256F3B5F1AA94D40000014CB /* Resources */,
+				25429A221AC0240300C03DBE /* SCSideBarController.h */,
+				25429A231AC0240300C03DBE /* SCSideBarController.m */,
+				25429A241AC0240300C03DBE /* Resources */,
 			);
-			path = MSSideBarController;
+			path = SCSideBarController;
 			sourceTree = "<group>";
 		};
-		256F3B5F1AA94D40000014CB /* Resources */ = {
+		25429A241AC0240300C03DBE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				25429A1E1ABFCF8800C03DBE /* FXBlurView.h */,
-				25429A1F1ABFCF8800C03DBE /* FXBlurView.m */,
-				256F3B631AA94D40000014CB /* MSSideBarCell.h */,
-				256F3B641AA94D40000014CB /* MSSideBarCell.m */,
-				256F3B651AA94D40000014CB /* sideBarResource.bundle */,
+				25429A251AC0240300C03DBE /* FXBlurView.h */,
+				25429A261AC0240300C03DBE /* FXBlurView.m */,
+				25429A271AC0240300C03DBE /* SCSideBarCell.h */,
+				25429A281AC0240300C03DBE /* SCSideBarCell.m */,
+				25429A291AC0240300C03DBE /* sideBarResource.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -114,7 +114,7 @@
 		25F944B71A88AD1600810DCF /* SCSideBarController */ = {
 			isa = PBXGroup;
 			children = (
-				256F3B5C1AA94D40000014CB /* MSSideBarController */,
+				25429A211AC0240300C03DBE /* SCSideBarController */,
 				25F944BC1A88AD1600810DCF /* AppDelegate.h */,
 				25F944BD1A88AD1600810DCF /* AppDelegate.m */,
 				25F944BF1A88AD1600810DCF /* ViewController.h */,
@@ -233,7 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256F3B6C1AA94D40000014CB /* sideBarResource.bundle in Resources */,
+				25429A2D1AC0240300C03DBE /* sideBarResource.bundle in Resources */,
 				25F944C41A88AD1600810DCF /* Main.storyboard in Resources */,
 				25F944C91A88AD1600810DCF /* LaunchScreen.xib in Resources */,
 				25F944C61A88AD1600810DCF /* Images.xcassets in Resources */,
@@ -254,12 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256F3B6B1AA94D40000014CB /* MSSideBarCell.m in Sources */,
+				25429A2C1AC0240300C03DBE /* SCSideBarCell.m in Sources */,
 				25F944C11A88AD1600810DCF /* ViewController.m in Sources */,
 				25F944BE1A88AD1600810DCF /* AppDelegate.m in Sources */,
-				256F3B691AA94D40000014CB /* MSSideBarController.m in Sources */,
+				25429A2B1AC0240300C03DBE /* FXBlurView.m in Sources */,
+				25429A2A1AC0240300C03DBE /* SCSideBarController.m in Sources */,
 				25F944BB1A88AD1600810DCF /* main.m in Sources */,
-				25429A201ABFCF8800C03DBE /* FXBlurView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FXBlurView.h"
 
-@interface MSSideBarController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SCSideBarController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 /**
  *  当前选中的控制器下标
  */

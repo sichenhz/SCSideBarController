@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 meilishuo. All rights reserved.
 //
 
-#import "MSSideBarController.h"
-#import "MSSideBarCell.h"
+#import "SCSideBarController.h"
+#import "SCSideBarCell.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -23,11 +23,11 @@
 
 #define kRowHeight 80.0
 
-@interface MSSideBarController ()
+@interface SCSideBarController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapInBlurView;
 @end
 
-@implementation MSSideBarController
+@implementation SCSideBarController
 
 static NSString *sideBarCellID = @"sideBarCell";
 
@@ -194,7 +194,7 @@ static NSString *sideBarCellID = @"sideBarCell";
 - (UITableView *)tableView {
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.sideBar.frame.size.width, self.sideBar.frame.size.height - 64)];
-        [tableView registerClass:[MSSideBarCell class] forCellReuseIdentifier:sideBarCellID];
+        [tableView registerClass:[SCSideBarCell class] forCellReuseIdentifier:sideBarCellID];
         tableView.backgroundColor = [UIColor clearColor];
         tableView.bounces = NO;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -236,9 +236,9 @@ static NSString *sideBarCellID = @"sideBarCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MSSideBarCell *cell = [tableView dequeueReusableCellWithIdentifier:sideBarCellID forIndexPath:indexPath];
+    SCSideBarCell *cell = [tableView dequeueReusableCellWithIdentifier:sideBarCellID forIndexPath:indexPath];
     if (!cell) {
-        cell = [[MSSideBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sideBarCellID];
+        cell = [[SCSideBarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sideBarCellID];
     }
     
     UIViewController *vc = self.childViewControllers[indexPath.row];
@@ -338,7 +338,7 @@ static NSString *sideBarCellID = @"sideBarCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row != self.selectedIndex) {
-        MSSideBarCell *preCell = (MSSideBarCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
+        SCSideBarCell *preCell = (SCSideBarCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
         preCell.titleLabel.highlighted = NO;
         preCell.iconView.highlighted = NO;
     }

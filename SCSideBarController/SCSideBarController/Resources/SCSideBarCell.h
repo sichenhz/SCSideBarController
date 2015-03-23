@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSSideBarCell : UITableViewCell
+@interface SCSideBarCell : UITableViewCell
 /**
  *  侧拉菜单的icon
  */

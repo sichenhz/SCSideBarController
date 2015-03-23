@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 meilishuo. All rights reserved.
 //
 
-#import "MSSideBarController.h"
+#import "SCSideBarController.h"
 
-@interface ViewController : MSSideBarController
+@interface ViewController : SCSideBarController
 
 
 @end
